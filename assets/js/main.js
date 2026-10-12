@@ -33,7 +33,7 @@
       track("email_click", where);
     } else if (href.indexOf("instagram.com") !== -1) {
       track("instagram_click", where);
-    } else if (href.indexOf("maps.google.com") !== -1) {
+    } else if (/maps\.app\.goo\.gl|maps\.google\.com|google\.com\/maps/.test(href)) {
       track("directions_click", where);
     }
   });

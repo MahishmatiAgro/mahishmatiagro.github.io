@@ -1,4 +1,4 @@
-# Mahishmati Agro — Website
+# Mahishmati Agro - Website
 
 Official website of **Mahishmati Agro (महिष्मति एग्रो)**, an organic oyster mushroom farm in Maharajpur, Mandla, Madhya Pradesh.
 
