@@ -91,4 +91,8 @@ git push origin main
 - Food and nutrition text on the site is general information only. The site makes no medical or health claims.
 - The `_private/` folder is not uploaded. It holds the source scans used to make the dish photos.
 
-© Mahishmati Agro. All rights reserved.
+## License
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
+
+© 2026 Mahishmati Agro. All rights reserved.

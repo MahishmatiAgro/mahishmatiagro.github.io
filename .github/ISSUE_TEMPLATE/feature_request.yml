@@ -1,0 +1,71 @@
+name: ✨ Feature request
+description: Suggest a new section, feature, or content improvement for the website.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make **mahishmatiagro.github.io** better? We'd love to hear it.
+
+        **Want to order mushrooms or ask about prices?** Please don't open an issue.
+        Message us on [WhatsApp](https://wa.me/917223047175) or email **mahishmatiagro@gmail.com**.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the need or frustration behind your idea.
+      placeholder: e.g. Customers keep asking for pack sizes, but the website doesn't show them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: What should be added or changed?
+      placeholder: e.g. Show 200 g / 250 g / 500 g options on the Fresh Oyster Mushroom card.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of change
+      options:
+        - New section or page
+        - Change to an existing section
+        - Content / text / translation (English or Hindi)
+        - New or better photos
+        - New recipe
+        - Ordering / WhatsApp / contact flow
+        - Design or mobile layout
+        - Speed, SEO or accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      description: Any other ways to solve this?
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, example websites, or mock-ups.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this hasn't been suggested yet.
+          required: true

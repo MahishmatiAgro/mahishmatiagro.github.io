@@ -1,0 +1,124 @@
+name: 🐞 Bug report
+description: Something on the website is broken, looks wrong, or shows incorrect information.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve **mahishmatiagro.github.io**.
+
+        **Want to order mushrooms or ask about prices?** Please don't open an issue.
+        Message us on [WhatsApp](https://wa.me/917223047175) or email **mahishmatiagro@gmail.com**.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What went wrong?
+      description: A clear description of the problem.
+      placeholder: e.g. The "Enquire on WhatsApp" button on Dried Oyster Mushroom opens the wrong message.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: Where on the site?
+      description: Pick the section where you saw the problem.
+      options:
+        - Top bar / Header / Menu
+        - Hero (top banner)
+        - About
+        - Products
+        - Why Us / Nutrition
+        - Recipes (list or recipe popup)
+        - Bulk / Dealer orders
+        - Gallery
+        - Customer feedback
+        - FAQ
+        - Contact / Enquiry form / Map
+        - Footer
+        - WhatsApp button / Mobile call bar
+        - Recipe pamphlet PDF
+        - 404 page
+        - Whole site / not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we see the problem ourselves?
+      placeholder: |
+        1. Open https://mahishmatiagro.github.io/ on my phone
+        2. Switch language to हिंदी
+        3. Tap "Recipes" → "Mushroom Kadhi"
+        4. See …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Site language
+      options:
+        - English
+        - हिंदी (Hindi)
+        - Both
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Android phone
+        - iPhone
+        - Tablet / iPad
+        - Desktop / Laptop
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: e.g. Chrome 129 on Android 14, Safari on iOS 18, in-app Instagram browser
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording
+      description: Drag and drop images here. They help a lot.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Console errors, network type (2G/4G/Wi-Fi), or anything else that may help.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this hasn't been reported yet.
+          required: true
+        - label: I reloaded the page (or cleared the cache) and the problem is still there.
+          required: false
