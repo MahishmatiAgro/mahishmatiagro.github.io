@@ -339,3 +339,4 @@ html[lang="hi"] .product-hi { display: none; }
   .mobile-bar a { text-align: center; padding: 15px 10px; font-weight: 700; text-decoration: none; background: var(--green); color: #fff; }
   .mobile-bar .mb-wa { background: var(--wa); }
 }
+.footer-social { display: inline-flex; align-items: center; gap: 6px; }

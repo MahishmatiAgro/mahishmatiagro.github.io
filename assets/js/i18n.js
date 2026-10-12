@@ -166,6 +166,7 @@ window.I18N_HI = {
   "con.owner": "संचालक",
   "con.phone": "फोन / WhatsApp",
   "con.email": "ईमेल",
+  "con.instagram": "इंस्टाग्राम",
   "con.address": "पता",
   "con.directions": "रास्ता देखें ↗",
   "form.title": "पूछताछ भेजें",
