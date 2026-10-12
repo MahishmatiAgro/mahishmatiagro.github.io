@@ -9,6 +9,35 @@
   var lang = "en";
   try { lang = localStorage.getItem(STORAGE_KEY) === "hi" ? "hi" : "en"; } catch (e) {}
 
+  /* ---------- Google Analytics events ---------- */
+  function track(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+  }
+  function sectionOf(el) {
+    var s = el.closest("section[id], header, footer, .topbar, .mobile-bar, .wa-float");
+    if (!s) return "page";
+    return s.id || s.className.split(" ")[0] || s.tagName.toLowerCase();
+  }
+  // One listener for every contact link on the page.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href");
+    var where = { link_location: sectionOf(a), site_language: lang };
+    if (a.dataset.wa) {
+      where.enquiry_type = a.dataset.wa;
+      track("whatsapp_click", where);
+    } else if (href.indexOf("tel:") === 0) {
+      track("phone_call_click", where);
+    } else if (href.indexOf("mailto:") === 0) {
+      track("email_click", where);
+    } else if (href.indexOf("instagram.com") !== -1) {
+      track("instagram_click", where);
+    } else if (href.indexOf("maps.google.com") !== -1) {
+      track("directions_click", where);
+    }
+  });
+
   /* ---------- i18n ---------- */
   // English is the markup itself; cache it once so we can switch back.
   var textEls = document.querySelectorAll("[data-i18n]");
@@ -43,6 +72,7 @@
   document.querySelectorAll(".lang-btn").forEach(function (b) {
     b.addEventListener("click", function () {
       lang = b.dataset.lang;
+      track("language_switch", { site_language: lang });
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
       applyLang();
     });
@@ -90,6 +120,7 @@
   }
 
   function openRecipe(r, i) {
+    track("view_recipe", { recipe_id: r.id, site_language: lang });
     var c = r[lang];
     document.getElementById("rd-img").src = "assets/img/dishes/" + r.id + ".png";
     document.getElementById("rd-img").alt = c.title;
@@ -140,6 +171,7 @@
       var v = (d.get(f[0]) || "").trim();
       if (v) lines.push(f[1] + ": " + v);
     });
+    track("generate_lead", { lead_source: "enquiry_form", product: productSel.value, site_language: lang });
     window.open(waUrl(lines.join("\n")), "_blank", "noopener");
   });
 
