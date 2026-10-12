@@ -1,0 +1,16 @@
+# Dependencies and lockfile
+node_modules/
+package-lock.json
+
+# Private / non-site folders
+_private/
+.claude/
+ptprashanttripathi.github.io-main/
+
+# Binary and generated assets
+assets/img/
+assets/pdf/
+_site/
+
+# Legal text: keep exactly as published
+LICENSE

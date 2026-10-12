@@ -31,7 +31,7 @@ We track bugs and ideas with [GitHub Issues](https://github.com/MahishmatiAgro/m
 
 ## Making changes
 
-The site is plain **HTML, CSS and JavaScript**. There's no build step, no framework and no npm.
+The site is plain **HTML, CSS and JavaScript**. There's no build step and no framework. npm is only used for the code formatter ([Prettier](https://prettier.io/)).
 
 ### 1. Fork, clone, and branch
 
@@ -53,21 +53,22 @@ Then open <http://localhost:8080>.
 
 ### 3. Where things live
 
-| What you want to change | File |
-|---|---|
-| English text, sections, links | `index.html` |
-| Hindi text, WhatsApp message text | `assets/js/i18n.js` |
-| Recipes (English + Hindi) | `assets/js/recipes.js` |
-| Behaviour (language switch, menu, form, recipes) | `assets/js/main.js` |
-| Styles and colours | `assets/css/style.css` |
-| Product photos | `assets/img/products/` |
-| Recipe / gallery photos | `assets/img/dishes/` |
+| What you want to change                          | File                   |
+| ------------------------------------------------ | ---------------------- |
+| English text, sections, links                    | `index.html`           |
+| Hindi text, WhatsApp message text                | `assets/js/i18n.js`    |
+| Recipes (English + Hindi)                        | `assets/js/recipes.js` |
+| Behaviour (language switch, menu, form, recipes) | `assets/js/main.js`    |
+| Styles and colours                               | `assets/css/style.css` |
+| Product photos                                   | `assets/img/products/` |
+| Recipe / gallery photos                          | `assets/img/dishes/`   |
 
 See the [README](README.md) for more detail.
 
 ### 4. Follow these rules
 
 **Text and translations**
+
 - Every visible text element has a `data-i18n="key"` attribute. When you add or change English text in `index.html`, **add or update the same key in `assets/js/i18n.js`** with the Hindi translation.
 - Keep both languages saying the same thing.
 - Business details must stay consistent everywhere:
@@ -77,22 +78,26 @@ See the [README](README.md) for more detail.
   - Instagram: **@mahishmatiagro**
 
 **Content claims**
+
 - **No medical or health-cure claims.** Nutrition text must stay general, e.g. "a source of protein". Don't write things like "prevents disease".
 - Don't add prices, delivery promises or customer reviews unless the owner has confirmed them.
 
 **Code style**
-- 2 spaces for indentation, no tabs.
+
+- Formatting is handled by Prettier: 4 spaces, no tabs. Run `npm install` once, then `npm run format` before committing. The deploy fails if any file isn't formatted.
 - Plain JavaScript (no frameworks or build tools) that works in current mobile browsers.
 - Keep it accessible: `alt` text on images, `aria-label` on icon-only buttons, and enough colour contrast.
 - Don't edit the `?v=…` numbers on CSS/JS links. The deploy workflow sets them automatically.
 - For a release, bump `"version"` in `package.json` (`Major.Minor.Fix`). See [Versioning](README.md#versioning).
 
 **Images**
+
 - Use web-sized images: about 900 px wide and under 300 KB if possible. JPG for photos, PNG only when transparency is needed.
 - Only add photos you own or have permission to use.
 
 ### 5. Test before you submit
 
+- [ ] `npm run format:check` passes.
 - [ ] The page loads with **no errors** in the browser console.
 - [ ] The **EN ↔ हिंदी** toggle works and your new text is translated.
 - [ ] It looks right on a **phone** (about 375 px wide) and on a **desktop**.

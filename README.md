@@ -5,20 +5,21 @@ Official website of **Mahishmati Agro (महिष्मति एग्रो)
 **Live site:** https://mahishmatiagro.github.io/
 
 We sell:
+
 - Organic fresh oyster mushroom
 - Dried oyster mushroom
 - Oyster mushroom powder
 
 ## Contact
 
-| | |
-|---|---|
-| Owner | Pt. Prashant Tripathi |
-| Phone / WhatsApp | [+91 72230 47175](tel:+917223047175) |
-| Email | [mahishmatiagro@gmail.com](mailto:mahishmatiagro@gmail.com) |
-| Instagram | [@mahishmatiagro](https://www.instagram.com/mahishmatiagro) |
-| Address | Ayodhya Puram Colony, near Railway Station, Maharajpur, Mandla, Madhya Pradesh 481665 |
-| Udyam Registration | UDYAM-MP-29-0021697 |
+|                    |                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| Owner              | Pt. Prashant Tripathi                                                                 |
+| Phone / WhatsApp   | [+91 72230 47175](tel:+917223047175)                                                  |
+| Email              | [mahishmatiagro@gmail.com](mailto:mahishmatiagro@gmail.com)                           |
+| Instagram          | [@mahishmatiagro](https://www.instagram.com/mahishmatiagro)                           |
+| Address            | Ayodhya Puram Colony, near Railway Station, Maharajpur, Mandla, Madhya Pradesh 481665 |
+| Udyam Registration | UDYAM-MP-29-0021697                                                                   |
 
 ## About the site
 
@@ -74,6 +75,18 @@ python3 -m http.server 8080
 
 Then open http://localhost:8080. The version badge in the footer shows `dev` locally.
 
+## Code formatting
+
+Code is formatted with [Prettier](https://prettier.io/): 4-space indentation, double quotes and semicolons (Markdown and YAML use 2 spaces). The settings are in [`.prettierrc.json`](.prettierrc.json).
+
+```bash
+npm install            # once, installs Prettier
+npm run format         # format all files
+npm run format:check   # check without changing anything
+```
+
+The deploy workflow runs `format:check` and stops the deploy if any file isn't formatted. Run `npm run format` before you push.
+
 ## Deploy
 
 The site is deployed to GitHub Pages by the workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It runs on every push to `main` and can also be started by hand from the **Actions** tab.
@@ -83,6 +96,7 @@ git push origin main
 ```
 
 The workflow:
+
 1. Copies only the website files into the published site. README, configs, `.github/` and `_private/` are never published.
 2. Stamps the version into the footer's bottom-right corner as **`v<Major.Minor.Fix> · build <n>`**. Hover over it to see the commit and date.
 3. Replaces every `?v=…` cache-busting number with `<version>.<build>`, so visitors always get the latest CSS/JS. You never need to change these by hand.
@@ -96,11 +110,11 @@ The version comes from `"version"` in [`package.json`](package.json) and must be
 
 Change the version before pushing a release:
 
-| Change | Example | Bump |
-|---|---|---|
-| Small fix: typo, broken link, photo swap | `1.0.0` → `1.0.1` | **Fix** |
-| New section, product or feature | `1.0.1` → `1.1.0` | **Minor** |
-| Full redesign or a big change | `1.1.0` → `2.0.0` | **Major** |
+| Change                                   | Example           | Bump      |
+| ---------------------------------------- | ----------------- | --------- |
+| Small fix: typo, broken link, photo swap | `1.0.0` → `1.0.1` | **Fix**   |
+| New section, product or feature          | `1.0.1` → `1.1.0` | **Minor** |
+| Full redesign or a big change            | `1.1.0` → `2.0.0` | **Major** |
 
 If you don't change it, the site redeploys with the same version and a new build number.
 

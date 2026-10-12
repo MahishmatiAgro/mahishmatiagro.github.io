@@ -54,6 +54,18 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Building v$VERSION · build ${{ github.run_number }}"
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dev tools
+        run: npm ci
+
+      - name: Check formatting (Prettier)
+        run: npm run format:check
+
       - name: Copy website files
         run: |
           mkdir -p _site
@@ -63,8 +75,8 @@ jobs:
       - name: Stamp version and cache-busting numbers
         run: |
           for f in _site/index.html _site/404.html; do
-            # Footer badge
-            perl -0pi -e 's#<span class="site-version" title="[^"]*"><!--build:version-->.*?<!--/build:version--></span>#<span class="site-version" title="Build $ENV{BUILD} · commit $ENV{SHORT_SHA} · $ENV{BUILD_DATE}">v$ENV{VERSION} · build $ENV{BUILD}</span>#s' "$f"
+            # Footer badge (\s* tolerates the line breaks Prettier puts inside tags)
+            perl -0pi -e 's#<span\s+class="site-version"\s+title="[^"]*"\s*>\s*<!--build:version-->.*?<!--/build:version-->\s*</span\s*>#<span class="site-version" title="Build $ENV{BUILD} · commit $ENV{SHORT_SHA} · $ENV{BUILD_DATE}">v$ENV{VERSION} · build $ENV{BUILD}</span>#s' "$f"
             # style.css?v=… / main.js?v=… → ?v=<version>.<build>
             perl -pi -e 's/\?v=[0-9A-Za-z.\-]+"/?v=$ENV{VERSION}.$ENV{BUILD}"/g' "$f"
           done

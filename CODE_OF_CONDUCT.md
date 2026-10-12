@@ -47,10 +47,10 @@ All complaints will be reviewed and investigated promptly and fairly. The mainta
 
 The maintainer will follow these guidelines when deciding on the consequences of a violation:
 
-1. **Correction.** *Behaviour:* inappropriate language or other unprofessional or unwelcome conduct. *Consequence:* a private written warning that explains the problem. A public apology may be requested.
-2. **Warning.** *Behaviour:* a single violation, or a series of actions. *Consequence:* a warning with consequences for continued behaviour, plus no interaction with the people involved for a set period. Breaking these terms may lead to a temporary or permanent ban.
-3. **Temporary ban.** *Behaviour:* a serious violation, including sustained inappropriate behaviour. *Consequence:* a temporary ban from any interaction or public communication with the project.
-4. **Permanent ban.** *Behaviour:* a pattern of violations, harassment of an individual, or aggression towards or disparagement of groups of people. *Consequence:* a permanent ban from any public interaction with the project.
+1. **Correction.** _Behaviour:_ inappropriate language or other unprofessional or unwelcome conduct. _Consequence:_ a private written warning that explains the problem. A public apology may be requested.
+2. **Warning.** _Behaviour:_ a single violation, or a series of actions. _Consequence:_ a warning with consequences for continued behaviour, plus no interaction with the people involved for a set period. Breaking these terms may lead to a temporary or permanent ban.
+3. **Temporary ban.** _Behaviour:_ a serious violation, including sustained inappropriate behaviour. _Consequence:_ a temporary ban from any interaction or public communication with the project.
+4. **Permanent ban.** _Behaviour:_ a pattern of violations, harassment of an individual, or aggression towards or disparagement of groups of people. _Consequence:_ a permanent ban from any public interaction with the project.
 
 ## Attribution
 
