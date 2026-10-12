@@ -30,7 +30,8 @@ body {
   background: var(--cream);
   -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; display: block; }
+/* height:auto keeps width/height attributes from stretching images when CSS resizes them */
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.25; margin: 0 0 .5em; color: var(--green); }
 h2 { font-size: clamp(1.75rem, 3.6vw, 2.6rem); }
@@ -86,7 +87,7 @@ html[lang="hi"] .owner-label, html[lang="hi"] .rc-num { letter-spacing: 0; font-
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(250, 248, 237, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand img { width: 56px; height: 56px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.brand img { flex: none; object-fit: contain; width: 56px; height: 56px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand-text strong { font-family: "Playfair Display", Georgia, serif; font-size: 1.3rem; color: var(--green); }
 .brand-text small { color: var(--olive); font-size: .9rem; }
@@ -115,8 +116,8 @@ html[lang="hi"] .hero h1 em { font-style: normal; }
 .hero-visual { position: relative; justify-self: center; }
 .hero-photo { width: min(440px, 80vw); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 8px solid rgba(222, 201, 148, .7); box-shadow: 0 30px 60px rgba(0,0,0,.35); }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
-.hero-stamp { position: absolute; left: -10px; bottom: 6px; width: 130px; height: 130px; border-radius: 50%; background: #fff; padding: 6px; box-shadow: 0 12px 28px rgba(0,0,0,.3); }
-.hero-stamp img { border-radius: 50%; }
+.hero-stamp { box-sizing: border-box; position: absolute; left: -10px; bottom: 6px; width: 130px; height: 130px; border-radius: 50%; background: #fff; padding: 6px; box-shadow: 0 12px 28px rgba(0,0,0,.3); }
+.hero-stamp img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 
 /* ---------- Sections ---------- */
 .section { padding: 90px 0; }
@@ -128,7 +129,7 @@ html[lang="hi"] .hero h1 em { font-style: normal; }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: center; }
-.about-media img { width: 100%; max-width: 440px; margin: auto; border-radius: 50%; background: #fff; box-shadow: var(--shadow); }
+.about-media img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; max-width: 440px; margin: auto; border-radius: 50%; background: #fff; box-shadow: var(--shadow); }
 .owner-card { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-top: 24px; max-width: 420px; }
 .owner-card > div:last-child { display: flex; flex-direction: column; line-height: 1.35; }
 .owner-card a { color: var(--green); font-weight: 600; text-decoration: none; }
@@ -261,7 +262,7 @@ html[lang="hi"] .product-hi { display: none; }
 /* Footer */
 .site-footer { background: var(--green-dark); color: #cdd3bb; padding: 60px 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; }
-.footer-brand img { width: 96px; height: 96px; border-radius: 50%; background: #fff; margin-bottom: 14px; }
+.footer-brand img { object-fit: contain; width: 96px; height: 96px; border-radius: 50%; background: #fff; margin-bottom: 14px; }
 .footer-brand p { font-size: .95rem; max-width: 300px; }
 .site-footer h4 { color: var(--gold-light); font-family: var(--font-body); font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
@@ -274,7 +275,6 @@ html[lang="hi"] .product-hi { display: none; }
 .wa-float { position: fixed; right: 22px; bottom: 22px; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 10px 25px rgba(0,0,0,.25); z-index: 60; transition: transform .2s; }
 .wa-float:hover { transform: scale(1.08); }
 .wa-float svg { width: 32px; height: 32px; fill: #fff; }
-.mobile-bar { display: none; }
 
 /* Reveal on scroll */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
@@ -322,7 +322,7 @@ html[lang="hi"] .product-hi { display: none; }
   .recipe-dialog { overflow: auto; }
 }
 @media (max-width: 640px) {
-  body { font-size: 16px; padding-bottom: 58px; }
+  body { font-size: 16px; }
   .section { padding: 64px 0; }
   .hide-sm { display: none !important; }
   .brand img { width: 46px; height: 46px; }
@@ -334,9 +334,11 @@ html[lang="hi"] .product-hi { display: none; }
   .rc-sub { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .enquiry-form { padding: 24px 20px; }
-  .wa-float { display: none; }
-  .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; box-shadow: 0 -4px 16px rgba(0,0,0,.15); }
-  .mobile-bar a { text-align: center; padding: 15px 10px; font-weight: 700; text-decoration: none; background: var(--green); color: #fff; }
-  .mobile-bar .mb-wa { background: var(--wa); }
+  .wa-float { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+  .wa-float svg { width: 28px; height: 28px; }
 }
 .footer-social { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Build version badge (bottom-right of the footer) */
+.footer-right { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin-left: auto; }
+.site-version { font: 500 .75rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .02em; color: #9fa88b; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; padding: 4px 9px; white-space: nowrap; cursor: default; }

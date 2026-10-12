@@ -1,0 +1,16 @@
+{
+  "name": "mahishmatiagro.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website of Mahishmati Agro, an organic oyster mushroom farm in Maharajpur, Mandla, Madhya Pradesh.",
+  "homepage": "https://mahishmatiagro.github.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahishmatiAgro/mahishmatiagro.github.io.git"
+  },
+  "license": "GPL-3.0",
+  "author": "Pt. Prashant Tripathi <mahishmatiagro@gmail.com>",
+  "scripts": {
+    "start": "python3 -m http.server 8080"
+  }
+}

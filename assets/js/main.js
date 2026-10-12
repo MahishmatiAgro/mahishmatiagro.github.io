@@ -30,7 +30,7 @@
     if (typeof window.gtag === "function") window.gtag("event", name, params || {});
   }
   function sectionOf(el) {
-    var s = el.closest("section[id], header, footer, .topbar, .mobile-bar, .wa-float");
+    var s = el.closest("section[id], header, footer, .topbar, .wa-float");
     if (!s) return "page";
     return s.id || s.className.split(" ")[0] || s.tagName.toLowerCase();
   }

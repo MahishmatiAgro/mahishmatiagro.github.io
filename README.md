@@ -64,27 +64,43 @@ sips -s format jpeg -s formatOptions 82 -Z 900 "original.png" --out assets/img/p
 
 **Change the WhatsApp number.** Update `WA_NUMBER` in `assets/js/main.js`, plus the `tel:` / `wa.me` links in `index.html`.
 
-### After any CSS or JS change
-
-Bump the version number on the CSS/JS links at the bottom and top of `index.html` (for example `?v=3` → `?v=4`). Otherwise visitors' browsers may keep showing the old version.
-
 ## Run locally
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8080
 ```
 
-Then open http://localhost:8000.
+Then open http://localhost:8080. The version badge in the footer shows `dev` locally.
 
 ## Deploy
 
-The site is published with GitHub Pages from the `main` branch of
-[MahishmatiAgro/mahishmatiagro.github.io](https://github.com/MahishmatiAgro/mahishmatiagro.github.io).
-Pushing to `main` updates the live site within a few minutes.
+The site is deployed to GitHub Pages by the workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It runs on every push to `main` and can also be started by hand from the **Actions** tab.
 
 ```bash
 git push origin main
 ```
+
+The workflow:
+1. Copies only the website files into the published site. README, configs, `.github/` and `_private/` are never published.
+2. Stamps the version into the footer's bottom-right corner as **`v<Major.Minor.Fix> · build <n>`**. Hover over it to see the commit and date.
+3. Replaces every `?v=…` cache-busting number with `<version>.<build>`, so visitors always get the latest CSS/JS. You never need to change these by hand.
+4. Publishes `version.json` (version, build, commit, date) at https://mahishmatiagro.github.io/version.json.
+
+**One-time setup:** in the repo's **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
+
+### Versioning
+
+The version comes from `"version"` in [`package.json`](package.json) and must be `Major.Minor.Fix`, for example `1.2.3`. The build number is the GitHub Actions run number and goes up by itself on every deploy.
+
+Change the version before pushing a release:
+
+| Change | Example | Bump |
+|---|---|---|
+| Small fix: typo, broken link, photo swap | `1.0.0` → `1.0.1` | **Fix** |
+| New section, product or feature | `1.0.1` → `1.1.0` | **Minor** |
+| Full redesign or a big change | `1.1.0` → `2.0.0` | **Major** |
+
+If you don't change it, the site redeploys with the same version and a new build number.
 
 ## Notes
 
