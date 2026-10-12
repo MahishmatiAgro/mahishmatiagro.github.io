@@ -6,8 +6,24 @@
   var root = document.documentElement;
   root.classList.add("js");
 
-  var lang = "en";
-  try { lang = localStorage.getItem(STORAGE_KEY) === "hi" ? "hi" : "en"; } catch (e) {}
+  var SUPPORTED = ["en", "hi"];
+
+  // Use the visitor's saved choice; otherwise the first supported language
+  // in their browser's preference list; otherwise English.
+  function browserLang() {
+    var prefs = navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || ""];
+    for (var i = 0; i < prefs.length; i++) {
+      var code = String(prefs[i]).toLowerCase().split("-")[0];
+      if (SUPPORTED.indexOf(code) !== -1) return code;
+    }
+    return "en";
+  }
+
+  var lang = null;
+  try { lang = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  if (SUPPORTED.indexOf(lang) === -1) lang = browserLang();
 
   /* ---------- Google Analytics events ---------- */
   function track(name, params) {
