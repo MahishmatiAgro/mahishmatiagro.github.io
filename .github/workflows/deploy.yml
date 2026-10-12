@@ -1,0 +1,99 @@
+# Deploys the website to GitHub Pages on every push to main.
+#
+# Version = "version" in package.json (Major.Minor.Fix), e.g. 1.0.0
+# Build   = GitHub Actions run number (goes up by 1 on every deploy)
+#
+# The workflow:
+#   1. copies only the website files into _site/
+#   2. stamps "v<version> · build <n>" into the footer badge
+#   3. replaces every ?v=… cache-busting number with <version>.<build>
+#   4. writes version.json and deploys to GitHub Pages
+#
+# One-time setup: repo Settings → Pages → Build and deployment → Source: "GitHub Actions".
+
+name: Deploy website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one deployment at a time; don't cancel a deployment that is already running.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Read version from package.json
+        id: meta
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error file=package.json::version must be Major.Minor.Fix (e.g. 1.2.3), got '$VERSION'"
+            exit 1
+          fi
+          {
+            echo "VERSION=$VERSION"
+            echo "BUILD=${{ github.run_number }}"
+            echo "SHORT_SHA=${GITHUB_SHA::7}"
+            echo "BUILD_DATE=$(date -u +%Y-%m-%d)"
+          } >> "$GITHUB_ENV"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Building v$VERSION · build ${{ github.run_number }}"
+
+      - name: Copy website files
+        run: |
+          mkdir -p _site
+          # Allow-list: only these are published (keeps docs, configs and private files off the site).
+          cp -R index.html 404.html robots.txt sitemap.xml LICENSE assets _site/
+
+      - name: Stamp version and cache-busting numbers
+        run: |
+          for f in _site/index.html _site/404.html; do
+            # Footer badge
+            perl -0pi -e 's#<span class="site-version" title="[^"]*"><!--build:version-->.*?<!--/build:version--></span>#<span class="site-version" title="Build $ENV{BUILD} · commit $ENV{SHORT_SHA} · $ENV{BUILD_DATE}">v$ENV{VERSION} · build $ENV{BUILD}</span>#s' "$f"
+            # style.css?v=… / main.js?v=… → ?v=<version>.<build>
+            perl -pi -e 's/\?v=[0-9A-Za-z.\-]+"/?v=$ENV{VERSION}.$ENV{BUILD}"/g' "$f"
+          done
+
+          # Fail the build if the footer badge was not stamped
+          grep -q "v${VERSION} · build ${BUILD}</span>" _site/index.html \
+            || { echo "::error file=index.html::version badge markers not found in footer"; exit 1; }
+
+          printf '{\n  "version": "%s",\n  "build": %s,\n  "commit": "%s",\n  "date": "%s"\n}\n' \
+            "$VERSION" "$BUILD" "$GITHUB_SHA" "$BUILD_DATE" > _site/version.json
+
+          echo "### Deployed v${VERSION} · build ${BUILD}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit \`${SHORT_SHA}\` · ${BUILD_DATE}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
