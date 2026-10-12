@@ -64,6 +64,8 @@ sips -s format jpeg -s formatOptions 82 -Z 900 "original.png" --out assets/img/p
 
 **Change the WhatsApp number.** Update `WA_NUMBER` in `assets/js/main.js`, plus the `tel:` / `wa.me` links in `index.html`.
 
+**Change or add icons.** All icons are defined once, as `<symbol id="i-…">` entries in the icon sprite at the bottom of `index.html`. Edit them there; there are no separate icon files. Draw icons with `fill="currentColor"` (or `stroke="currentColor"`) so they take the colour of the text around them. Use an icon anywhere with `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-name"/></svg>`.
+
 ## Run locally
 
 ```bash
