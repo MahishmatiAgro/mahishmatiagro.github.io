@@ -46,10 +46,10 @@ Name branches like `fix/whatsapp-link`, `feat/pack-sizes` or `content/hindi-faq`
 ### 2. Run the site locally
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8080
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8080>.
 
 ### 3. Where things live
 
@@ -84,7 +84,8 @@ See the [README](README.md) for more detail.
 - 2 spaces for indentation, no tabs.
 - Plain JavaScript (no frameworks or build tools) that works in current mobile browsers.
 - Keep it accessible: `alt` text on images, `aria-label` on icon-only buttons, and enough colour contrast.
-- After changing any CSS or JS file, **bump the version** in `index.html` (for example `style.css?v=3` → `?v=4`) so visitors get the new file instead of a cached copy.
+- Don't edit the `?v=…` numbers on CSS/JS links. The deploy workflow sets them automatically.
+- For a release, bump `"version"` in `package.json` (`Major.Minor.Fix`). See [Versioning](README.md#versioning).
 
 **Images**
 - Use web-sized images: about 900 px wide and under 300 KB if possible. JPG for photos, PNG only when transparency is needed.
