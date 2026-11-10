@@ -95,6 +95,28 @@
         make("span", li, "vp.a" + i + "d", a[1], hi.about[i][1]);
     });
 
+    // Where the health information comes from, with a no-claim note.
+    if (p.source) {
+        var src = $("vp-source");
+        make("span", src, "vp.src", p.source.en, p.source.hi);
+        var list = document.createElement("ol");
+        list.className = "pd-sources";
+        p.source.links.forEach(function (l, i) {
+            var li = list.appendChild(document.createElement("li"));
+            make("strong", li, "vp.srcT" + i, l.topic.en + ":", l.topic.hi + ":");
+            li.appendChild(document.createTextNode(" "));
+            var link = document.createElement("a");
+            link.href = l.url;
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.textContent = l.cite;
+            li.appendChild(link);
+        });
+        src.appendChild(list);
+        make("span", src, "vp.srcEnd", p.source.enEnd, p.source.hiEnd);
+        src.hidden = false;
+    }
+
     function table(tbody, rows, hiRows, prefix) {
         rows.forEach(function (r, i) {
             var tr = document.createElement("tr");

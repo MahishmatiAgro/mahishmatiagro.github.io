@@ -4,6 +4,7 @@
    use null when something is not known yet (e.g. price: null shows "ask on WhatsApp").
    price: { now: selling price, mrp: MRP (struck out when now is lower), unit: "kg" or null }
    en.offer / hi.offer: small badge next to an offer price, e.g. "10% off".
+   source: optional references shown under "About this item" (links: [{topic: {en, hi}, url, cite}], en/hi text).
    en = English, hi = Hindi (same order and number of items in each list).
    keywords: comma-separated search words for this product (English and Hindi).
    Image paths are from the site root. */
@@ -221,6 +222,44 @@ window.PRODUCTS = {
     P0003: {
         img: "/assets/img/products/oyster-mushroom-powder.jpg",
         wa: "powder",
+        source: {
+            links: [
+                {
+                    topic: { en: "Blood sugar", hi: "ब्लड शुगर" },
+                    url: "https://doi.org/10.1002/ptr.5255",
+                    cite: "Jayasuriya W.J.A.B.N., Wanigatunge C.A., Fernando G.H., Abeytunga D.T.U., Suresh T.S. Hypoglycaemic activity of culinary Pleurotus ostreatus and P. cystidiosus mushrooms in healthy volunteers and type 2 diabetic patients on diet control and the possible mechanisms of action. Phytotherapy Research 29(2):303–309, 2015",
+                },
+                {
+                    topic: { en: "Metabolism", hi: "मेटाबॉलिज़्म" },
+                    url: "https://doi.org/10.1016/s0899-9007(97)00471-1",
+                    cite: "Bobek P., Ozdín L., Galbavý S. Dose- and time-dependent hypocholesterolemic effect of oyster mushroom (Pleurotus ostreatus) in rats. Nutrition 14(3):282–286, 1998",
+                },
+                {
+                    topic: { en: "Gut & digestion", hi: "आंत और पाचन" },
+                    url: "https://doi.org/10.3390/foods12102010",
+                    cite: "Törős G., El-Ramady H., Prokisch J., et al. Modulation of the gut microbiota with prebiotics and antimicrobial agents from Pleurotus ostreatus mushroom. Foods 12(10):2010, 2023",
+                },
+                {
+                    topic: { en: "Gut & digestion", hi: "आंत और पाचन" },
+                    url: "https://doi.org/10.3390/molecules25122806",
+                    cite: "Mitsou E.K., Saxami G., Stamoulou E., et al. Effects of rich in β-glucans edible mushrooms on aging gut microbiota characteristics: an in vitro study. Molecules 25(12):2806, 2020",
+                },
+                {
+                    topic: { en: "Immunity", hi: "रोग-प्रतिरोधक क्षमता" },
+                    url: "https://doi.org/10.1007/s00253-002-1076-7",
+                    cite: "Wasser S.P. Medicinal mushrooms as a source of antitumor and immunomodulating polysaccharides. Applied Microbiology and Biotechnology 60(3):258–274, 2002",
+                },
+                {
+                    topic: { en: "Overview", hi: "सारांश" },
+                    url: "https://www.ijpsjournal.com/article/a-review-of-oyster-mushroom-as-a-nutraceutical-on-health-care",
+                    cite: "Singh R., Vastrakar K., Chandra N. A Review of Oyster Mushroom as a Nutraceutical on Health Care. International Journal of Pharmaceutical Sciences 4(9), 2026. doi:10.5281/zenodo.23763277",
+                },
+            ],
+            en: "The health information above is taken from published research, not from tests on our product:",
+            hi: "ऊपर दी गई स्वास्थ्य जानकारी प्रकाशित शोध से ली गई है, हमारे उत्पाद की जाँच से नहीं:",
+            enEnd: "Mahishmati Agro does not claim that this product treats, cures or prevents any disease.",
+            hiEnd: "महिष्मति एग्रो यह दावा नहीं करता कि यह उत्पाद किसी बीमारी का इलाज करता है, उसे ठीक करता है या रोकता है।",
+        },
         price: { now: "359", mrp: "399" },
         en: {
             name: "Organic Oyster Mushroom Powder",
@@ -251,6 +290,13 @@ window.PRODUCTS = {
                     "Natural goodness.",
                     "Oyster mushrooms naturally contain polysaccharides (beta-glucans) and antioxidants.",
                 ],
+                [
+                    "Blood sugar.",
+                    "Helps maintain healthy blood sugar levels that are already within the normal range.",
+                ],
+                ["Metabolism.", "Supports normal, healthy metabolism."],
+                ["Gut & digestion.", "Supports a healthy gut and comfortable digestion."],
+                ["Immunity.", "Supports your body's natural immune defences."],
                 ["Fine powder.", "Smooth texture that blends easily while cooking."],
                 [
                     "Natural umami flavour.",
@@ -258,7 +304,7 @@ window.PRODUCTS = {
                 ],
                 [
                     "Easy to use every day.",
-                    "Mix into soups, curries, dal, sauces and gravies while they cook.",
+                    "Mix into smoothies, teas, coffee and soups, or cook it into curries, dal and gravies.",
                 ],
             ],
             nutrition: {
@@ -286,10 +332,10 @@ window.PRODUCTS = {
             ],
             useTitle: "Using mushroom powder",
             use: [
-                "Add a spoonful to soups, curries, dal, sauces or gravies while they cook.",
-                "Stir well and let it cook for a few minutes so the flavour spreads.",
+                "Mix it in: add 1–2 teaspoons to your smoothies, teas, coffee or soups for a nutritious boost.",
+                "Season your meals: sprinkle it into stir-fries, sauces, marinades or spice blends to enhance flavour.",
                 "Start with a little and add more to suit your taste.",
-                "Do not mix the raw powder into drinks without cooking it.",
+                "If you have allergies or medical conditions, please consult your doctor before use.",
             ],
             keywords:
                 "oyster mushroom powder, mushroom powder, organic mushroom powder, high protein mushroom powder, vegan mushroom powder, mushroom powder 100 g, मशरूम पाउडर, ऑयस्टर मशरूम पाउडर, Mahishmati Agro",
@@ -320,12 +366,22 @@ window.PRODUCTS = {
                     "प्राकृतिक गुण।",
                     "ऑयस्टर मशरूम में प्राकृतिक रूप से पॉलीसैकेराइड (बीटा-ग्लूकेन) और एंटीऑक्सीडेंट होते हैं।",
                 ],
+                [
+                    "ब्लड शुगर।",
+                    "सामान्य दायरे में पहले से मौजूद ब्लड शुगर को स्वस्थ बनाए रखने में मदद करता है।",
+                ],
+                ["मेटाबॉलिज़्म।", "सामान्य और स्वस्थ मेटाबॉलिज़्म में सहायक।"],
+                ["आंत और पाचन।", "स्वस्थ आंत और आरामदायक पाचन में सहायक।"],
+                ["रोग-प्रतिरोधक क्षमता।", "शरीर की प्राकृतिक रोग-प्रतिरोधक क्षमता में सहायक।"],
                 ["बारीक पाउडर।", "मुलायम बनावट, जो पकाते समय आसानी से मिल जाती है।"],
                 [
                     "प्राकृतिक उमामी स्वाद।",
                     "हल्का, भरपूर और नमकीन मशरूम स्वाद, जो कई व्यंजनों का स्वाद बढ़ाता है।",
                 ],
-                ["रोज़ इस्तेमाल में आसान।", "सूप, सब्जी, दाल, सॉस और ग्रेवी पकाते समय मिलाएं।"],
+                [
+                    "रोज़ इस्तेमाल में आसान।",
+                    "स्मूदी, चाय, कॉफ़ी और सूप में मिलाएं, या सब्जी, दाल और ग्रेवी में पकाएं।",
+                ],
             ],
             nutrition: {
                 sub: "प्रति 100 ग्राम अनुमानित मात्रा",
@@ -352,10 +408,10 @@ window.PRODUCTS = {
             ],
             useTitle: "मशरूम पाउडर का उपयोग",
             use: [
-                "सूप, सब्जी, दाल, सॉस या ग्रेवी पकाते समय एक चम्मच मिलाएं।",
-                "अच्छी तरह चलाएं और कुछ मिनट पकने दें, ताकि स्वाद फैल जाए।",
+                "मिलाकर लें: पोषण के लिए 1–2 छोटे चम्मच स्मूदी, चाय, कॉफ़ी या सूप में मिलाएं।",
+                "खाने में स्वाद: स्वाद बढ़ाने के लिए स्टर-फ्राई, सॉस, मैरिनेड या मसालों में छिड़कें।",
                 "थोड़ी मात्रा से शुरू करें और स्वाद के अनुसार बढ़ाएं।",
-                "कच्चे पाउडर को बिना पकाए पेय में न मिलाएं।",
+                "अगर आपको एलर्जी या कोई बीमारी है, तो इस्तेमाल से पहले डॉक्टर से सलाह लें।",
             ],
         },
     },

@@ -1598,6 +1598,19 @@ html[lang="hi"] .product-hi {
 .pd-steps li {
     margin-bottom: 0.5em;
 }
+.pd-source {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+}
+.pd-sources {
+    margin: 6px 0 8px;
+    padding-left: 1.3em;
+}
+.pd-source a {
+    color: var(--olive);
+    word-break: break-word;
+}
 .pd-note {
     font-size: 0.9rem;
     color: var(--muted);
