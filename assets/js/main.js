@@ -118,20 +118,24 @@
         nav.classList.remove("is-open");
         toggle.setAttribute("aria-expanded", "false");
     }
-    toggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("is-open");
-        toggle.setAttribute("aria-expanded", String(open));
-    });
-    nav.querySelectorAll("a").forEach(function (a) {
-        a.addEventListener("click", closeNav);
-    });
+    if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+            var open = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", String(open));
+        });
+        nav.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", closeNav);
+        });
+    }
 
     /* ---------- Recipes ---------- */
     var grid = document.getElementById("recipe-grid");
     var dialog = document.getElementById("recipe-dialog");
     var activeFilter = "all";
 
+    // Product pages have no recipe grid, dialog or enquiry form; those parts are skipped.
     function renderRecipes() {
+        if (!grid || !window.RECIPES) return;
         grid.innerHTML = "";
         window.RECIPES.forEach(function (r, i) {
             var c = r[lang];
@@ -168,9 +172,11 @@
         if (typeof dialog.showModal === "function") dialog.showModal();
         else dialog.setAttribute("open", "");
     }
-    dialog.addEventListener("click", function (e) {
-        if (e.target === dialog) dialog.close();
-    });
+    if (dialog) {
+        dialog.addEventListener("click", function (e) {
+            if (e.target === dialog) dialog.close();
+        });
+    }
 
     document.querySelectorAll(".chip[data-filter]").forEach(function (chip) {
         chip.addEventListener("click", function () {
@@ -189,37 +195,38 @@
     /* ---------- Enquiry form -> WhatsApp ---------- */
     var form = document.getElementById("enquiry-form");
     var formError = document.getElementById("form-error");
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var d = new FormData(form);
-        var name = (d.get("name") || "").trim();
-        if (!name) {
-            formError.hidden = false;
-            form.elements.name.focus();
-            return;
-        }
-        formError.hidden = true;
-        var L = window.WA_MSG[lang].form;
-        var productSel = form.elements.product;
-        var lines = [L.head, L.name + ": " + name];
-        var fields = [
-            ["phone", L.phone],
-            ["qty", L.qty],
-            ["city", L.city],
-            ["msg", L.msg],
-        ];
-        lines.push(L.product + ": " + productSel.options[productSel.selectedIndex].text);
-        fields.forEach(function (f) {
-            var v = (d.get(f[0]) || "").trim();
-            if (v) lines.push(f[1] + ": " + v);
+    if (form)
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var d = new FormData(form);
+            var name = (d.get("name") || "").trim();
+            if (!name) {
+                formError.hidden = false;
+                form.elements.name.focus();
+                return;
+            }
+            formError.hidden = true;
+            var L = window.WA_MSG[lang].form;
+            var productSel = form.elements.product;
+            var lines = [L.head, L.name + ": " + name];
+            var fields = [
+                ["phone", L.phone],
+                ["qty", L.qty],
+                ["city", L.city],
+                ["msg", L.msg],
+            ];
+            lines.push(L.product + ": " + productSel.options[productSel.selectedIndex].text);
+            fields.forEach(function (f) {
+                var v = (d.get(f[0]) || "").trim();
+                if (v) lines.push(f[1] + ": " + v);
+            });
+            track("generate_lead", {
+                lead_source: "enquiry_form",
+                product: productSel.value,
+                site_language: lang,
+            });
+            window.open(waUrl(lines.join("\n")), "_blank", "noopener");
         });
-        track("generate_lead", {
-            lead_source: "enquiry_form",
-            product: productSel.value,
-            site_language: lang,
-        });
-        window.open(waUrl(lines.join("\n")), "_blank", "noopener");
-    });
 
     /* ---------- Reveal on scroll ---------- */
     var reveals = document.querySelectorAll(".reveal");
@@ -244,6 +251,7 @@
         });
     }
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    var year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
     applyLang();
 })();

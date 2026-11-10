@@ -70,11 +70,11 @@ jobs:
         run: |
           mkdir -p _site
           # Allow-list: only these are published (keeps docs, configs and private files off the site).
-          cp -R index.html 404.html robots.txt sitemap.xml LICENSE assets _site/
+          cp -R index.html 404.html view-product robots.txt sitemap.xml LICENSE assets _site/
 
       - name: Stamp version and cache-busting numbers
         run: |
-          for f in _site/index.html _site/404.html; do
+          for f in _site/index.html _site/404.html _site/view-product/index.html; do
             # Footer badge (\s* tolerates the line breaks Prettier puts inside tags)
             perl -0pi -e 's#<span\s+class="site-version"\s+title="[^"]*"\s*>\s*<!--build:version-->.*?<!--/build:version-->\s*</span\s*>#<span class="site-version" title="Build $ENV{BUILD} · commit $ENV{SHORT_SHA} · $ENV{BUILD_DATE}">v$ENV{VERSION} · build $ENV{BUILD}</span>#s' "$f"
             # style.css?v=… / main.js?v=… → ?v=<version>.<build>

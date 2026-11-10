@@ -20,6 +20,7 @@ window.I18N_HI = {
     "cta.whatsapp": "WhatsApp पर ऑर्डर करें",
     "cta.call": "अभी कॉल करें",
     "cta.enquire": "WhatsApp पर पूछें",
+    "cta.view": "उत्पाद देखें",
     "hero.b0": "जैविक",
     "hero.b1": "ताज़ा ऑयस्टर",
     "hero.b2": "सूखा ऑयस्टर",
@@ -205,6 +206,15 @@ window.I18N_HI = {
     "foot.addr": "महाराजपुर, मंडला, म.प्र. 481665",
     "foot.rights": "सर्वाधिकार सुरक्षित।",
     "foot.udyam": "उद्यम पंजीकरण",
+
+    /* Product page shell (/view-product/). Product text itself is in view-product/products.js */
+    "vp.home": "होम",
+    "vp.from": "हमारे फार्म से",
+    "vp.order": "WhatsApp पर ऑर्डर करें",
+    "vp.enquire": "WhatsApp पर पूछें",
+    "vp.aboutT": "इस उत्पाद के बारे में",
+    "vp.nutT": "पोषण जानकारी",
+    "vp.detT": "उत्पाद विवरण",
 };
 
 /* Pre-filled WhatsApp messages */
@@ -215,6 +225,10 @@ window.WA_MSG = {
         fresh: "Hello Mahishmati Agro, I am interested in Fresh Oyster Mushroom. Please share availability and price.",
         dried: "Hello Mahishmati Agro, I am interested in Dried Oyster Mushroom. Please share availability and price.",
         powder: "Hello Mahishmati Agro, I am interested in Oyster Mushroom Powder. Please share availability and price.",
+        freshOrder: "Hello Mahishmati Agro, I want to order Fresh Oyster Mushroom. Quantity: ",
+        driedOrder: "Hello Mahishmati Agro, I want to order Dried Oyster Mushroom. Quantity: ",
+        powderOrder:
+            "Hello Mahishmati Agro, I want to order Oyster Mushroom Powder (100 g pack). Number of packs: ",
         bulk: "Hello Mahishmati Agro, I would like a bulk / regular supply quote for oyster mushrooms.",
         review: "Hello Mahishmati Agro, here is my feedback about your mushrooms: ",
         form: {
@@ -233,6 +247,10 @@ window.WA_MSG = {
         fresh: "नमस्ते महिष्मति एग्रो, मुझे ताज़ा ऑयस्टर मशरूम चाहिए। कृपया उपलब्धता और दाम बताएं।",
         dried: "नमस्ते महिष्मति एग्रो, मुझे सूखा ऑयस्टर मशरूम चाहिए। कृपया उपलब्धता और दाम बताएं।",
         powder: "नमस्ते महिष्मति एग्रो, मुझे ऑयस्टर मशरूम पाउडर चाहिए। कृपया उपलब्धता और दाम बताएं।",
+        freshOrder: "नमस्ते महिष्मति एग्रो, मुझे ताज़ा ऑयस्टर मशरूम ऑर्डर करना है। मात्रा: ",
+        driedOrder: "नमस्ते महिष्मति एग्रो, मुझे सूखा ऑयस्टर मशरूम ऑर्डर करना है। मात्रा: ",
+        powderOrder:
+            "नमस्ते महिष्मति एग्रो, मुझे ऑयस्टर मशरूम पाउडर (100 ग्राम पैक) ऑर्डर करना है। पैकेट की संख्या: ",
         bulk: "नमस्ते महिष्मति एग्रो, मुझे ऑयस्टर मशरूम की थोक / नियमित सप्लाई का रेट चाहिए।",
         review: "नमस्ते महिष्मति एग्रो, आपके मशरूम के बारे में मेरी राय: ",
         form: {
