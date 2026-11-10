@@ -5,6 +5,7 @@
    price: { now: selling price, mrp: MRP (struck out when now is lower), unit: "kg" or null }
    en.offer / hi.offer: small badge next to an offer price, e.g. "10% off".
    en = English, hi = Hindi (same order and number of items in each list).
+   keywords: comma-separated search words for this product (English and Hindi).
    Image paths are from the site root. */
 window.PRODUCTS = {
     P0001: {
@@ -64,6 +65,8 @@ window.PRODUCTS = {
                 "Add to sabzi, pulao, soups, pakoda or stir-fries, and cook through.",
                 "Keep chilli and spices to your taste.",
             ],
+            keywords:
+                "fresh oyster mushroom, organic oyster mushroom, buy fresh mushroom, mushroom Mandla, mushroom Maharajpur, mushroom 125 g pack, ताज़ा ऑयस्टर मशरूम, ताज़ा मशरूम मंडला, Mahishmati Agro",
             meta: "Mahishmati Agro organic fresh oyster mushroom, 125 g pack, MRP ₹35. Freshly picked in Maharajpur, Mandla. Order on WhatsApp +91 72230 47175.",
         },
         hi: {
@@ -167,6 +170,8 @@ window.PRODUCTS = {
                 "When soft, drain the water and cut them as needed.",
                 "Cook well in sabzi, pulao, soups and other dishes.",
             ],
+            keywords:
+                "dried oyster mushroom, dry mushroom, dried mushroom price per kg, organic dried mushroom, mushroom Mandla, सूखा ऑयस्टर मशरूम, सूखा मशरूम, Mahishmati Agro",
             meta: "Mahishmati Agro dried oyster mushroom from our farm in Mandla. ₹2,000 per kg. Keeps for months; soak 20–30 minutes and cook like fresh. Order on WhatsApp +91 72230 47175.",
         },
         hi: {
@@ -286,6 +291,8 @@ window.PRODUCTS = {
                 "Start with a little and add more to suit your taste.",
                 "Do not mix the raw powder into drinks without cooking it.",
             ],
+            keywords:
+                "oyster mushroom powder, mushroom powder, organic mushroom powder, high protein mushroom powder, vegan mushroom powder, mushroom powder 100 g, मशरूम पाउडर, ऑयस्टर मशरूम पाउडर, Mahishmati Agro",
             meta: "Mahishmati Agro organic oyster mushroom powder, 100 g. 100% pure sun-dried oyster mushroom, no additives. High in protein and fibre. MRP ₹399. Order on WhatsApp +91 72230 47175.",
         },
         hi: {

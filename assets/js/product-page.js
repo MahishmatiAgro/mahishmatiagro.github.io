@@ -38,6 +38,10 @@
     document.querySelector('meta[property="og:title"]').content = en.name + " - Mahishmati Agro";
     document.querySelector('meta[property="og:description"]').content = en.meta;
     document.querySelector('meta[property="og:url"]').content = url;
+    document.querySelector('meta[name="keywords"]').content = en.keywords;
+    document.querySelector('meta[name="twitter:title"]').content = en.name + " - Mahishmati Agro";
+    document.querySelector('meta[name="twitter:description"]').content = en.meta;
+    document.querySelector('meta[name="twitter:image"]').content = BASE + p.img.slice(1);
     document.querySelector('meta[property="og:image"]').content = BASE + p.img.slice(1);
 
     put($("vp-crumb"), "vp.name", en.name, hi.name);
@@ -127,6 +131,9 @@
         image: BASE + p.img.slice(1),
         description: en.lead,
         brand: { "@type": "Brand", name: "Mahishmati Agro" },
+        manufacturer: { "@id": BASE + "#business" },
+        category: "Mushrooms",
+        countryOfOrigin: "IN",
     };
     if (p.price) {
         ld.offers = {
@@ -140,6 +147,15 @@
     }
     var s = document.createElement("script");
     s.type = "application/ld+json";
-    s.textContent = JSON.stringify(ld);
+    var crumbs = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: BASE },
+            { "@type": "ListItem", position: 2, name: "Products", item: BASE + "#products" },
+            { "@type": "ListItem", position: 3, name: en.name, item: url },
+        ],
+    };
+    s.textContent = JSON.stringify([ld, crumbs]);
     document.head.appendChild(s);
 })();
