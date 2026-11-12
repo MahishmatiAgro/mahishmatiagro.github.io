@@ -260,14 +260,13 @@ window.PRODUCTS = {
             enEnd: "Mahishmati Agro does not claim that this product treats, cures or prevents any disease.",
             hiEnd: "महिष्मति एग्रो यह दावा नहीं करता कि यह उत्पाद किसी बीमारी का इलाज करता है, उसे ठीक करता है या रोकता है।",
         },
-        price: { now: "359", mrp: "399" },
+        price: { now: null, mrp: "376" },
         en: {
             name: "Organic Oyster Mushroom Powder",
             alt: "Mahishmati Agro organic oyster mushroom powder jar",
             tag: "Easy to use",
             lead: "100% pure oyster mushroom powder, made from mushrooms we grow, sun-dry and grind ourselves in Maharajpur, Mandla. One ingredient, nothing extra.",
-            offer: "10% off",
-            priceNote: "Offer price for a 100 g pack · MRP ₹399, incl. of all taxes",
+            priceNote: "Incl. of all taxes · Net weight 100 g",
             badges: ["100% pure", "Sun-dried", "Single ingredient", "No additives", "Vegan"],
             about: [
                 [
@@ -322,8 +321,7 @@ window.PRODUCTS = {
             details: [
                 ["Ingredients", "100% pure sun-dried oyster mushroom powder"],
                 ["Net weight", "100 g"],
-                ["MRP", "₹399 per 100 g pack, incl. of all taxes"],
-                ["Offer price", "₹359 (10% off MRP)"],
+                ["MRP", "₹376 per 100 g pack, incl. of all taxes"],
                 ["Best before", "24 months from packing"],
                 ["Storage", "Store cool and dry. Keep the jar airtight and use a dry spoon."],
                 ["FSSAI Lic. No.", "21426250001720"],
@@ -339,14 +337,13 @@ window.PRODUCTS = {
             ],
             keywords:
                 "oyster mushroom powder, mushroom powder, organic mushroom powder, high protein mushroom powder, vegan mushroom powder, mushroom powder 100 g, मशरूम पाउडर, ऑयस्टर मशरूम पाउडर, Mahishmati Agro",
-            meta: "Mahishmati Agro organic oyster mushroom powder, 100 g. 100% pure sun-dried oyster mushroom, no additives. High in protein and fibre. MRP ₹399. Order on WhatsApp +91 72230 47175.",
+            meta: "Mahishmati Agro organic oyster mushroom powder, 100 g. 100% pure sun-dried oyster mushroom, no additives. High in protein and fibre. MRP ₹376. Order on WhatsApp +91 72230 47175.",
         },
         hi: {
             name: "जैविक ऑयस्टर मशरूम पाउडर",
             tag: "उपयोग में आसान",
             lead: "100% शुद्ध ऑयस्टर मशरूम पाउडर, उन मशरूमों से बना जिन्हें हम महाराजपुर, मंडला में खुद उगाते, धूप में सुखाते और पीसते हैं। एक ही सामग्री, और कुछ नहीं।",
-            offer: "10% छूट",
-            priceNote: "100 ग्राम पैक का ऑफ़र दाम · एमआरपी ₹399, सभी करों सहित",
+            priceNote: "सभी करों सहित · शुद्ध वज़न 100 ग्राम",
             badges: ["100% शुद्ध", "धूप में सुखाया", "एक ही सामग्री", "कोई मिलावट नहीं", "वीगन"],
             about: [
                 [
@@ -398,8 +395,7 @@ window.PRODUCTS = {
             details: [
                 ["सामग्री", "100% शुद्ध धूप में सुखाए ऑयस्टर मशरूम का पाउडर"],
                 ["शुद्ध वज़न", "100 ग्राम"],
-                ["एमआरपी", "₹399 प्रति 100 ग्राम पैक, सभी करों सहित"],
-                ["ऑफ़र दाम", "₹359 (एमआरपी पर 10% छूट)"],
+                ["एमआरपी", "₹376 प्रति 100 ग्राम पैक, सभी करों सहित"],
                 ["उपयोग की अवधि", "पैकिंग से 24 महीने तक"],
                 ["भंडारण", "ठंडी, सूखी जगह पर रखें। डिब्बा बंद रखें और सूखा चम्मच इस्तेमाल करें।"],
                 ["FSSAI लाइसेंस नं.", "21426250001720"],
