@@ -1621,6 +1621,16 @@ html[lang="hi"] .product-hi {
 .pd-two.pd-one {
     grid-template-columns: 1fr;
 }
+.pd-media iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+}
+/* Photo or 3D jar: whichever is hidden must not show (img/iframe set display: block). */
+.pd-media > [hidden] {
+    display: none;
+}
 .pd-price-ask small {
     font-size: 1rem;
     color: var(--green);

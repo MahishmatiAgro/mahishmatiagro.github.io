@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Mahishmati Agro · Oyster Mushroom Powder jar in 3D</title>
+        <link rel="stylesheet" href="css/jar.css" />
+    </head>
+    <!-- Shown inside an iframe in place of the photo on /view-product/?product=P0003. -->
+    <body>
+        <section class="stage" id="stage" aria-label="3D jar of oyster mushroom powder">
+            <canvas id="canvas" aria-label="Drag sideways to turn the jar"></canvas>
+            <div class="view-tools">
+                <button data-view="front">Front</button><button data-view="back">Back</button
+                ><button data-view="left">Left</button><button data-view="right">Right</button
+                ><button id="reset">Reset</button>
+            </div>
+            <p class="hint">Drag sideways to turn the jar</p>
+            <div class="loading" id="loading" role="status">
+                <div class="spinner"></div>
+                <span>Loading the 3D jar…</span>
+            </div>
+        </section>
+        <script type="importmap">
+            { "imports": { "three": "./js/vendor/three.module.js" } }
+        </script>
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>

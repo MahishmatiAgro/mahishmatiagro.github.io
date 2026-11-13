@@ -87,6 +87,14 @@ npm run format:check   # check without changing anything
 
 The deploy workflow runs `format:check` and stops the deploy if any file isn't formatted. Run `npm run format` before you push.
 
+To format automatically on every commit, set up [pre-commit](https://pre-commit.com/) once. It runs the same Prettier, plus basic file checks (trailing spaces, line endings, valid JSON/YAML, large files, private keys); the settings are in [`.pre-commit-config.yaml`](.pre-commit-config.yaml).
+
+```bash
+npm install            # Prettier, used by the hook
+pre-commit install     # run the checks on every git commit
+pre-commit run --all-files
+```
+
 ## Deploy
 
 The site is deployed to GitHub Pages by the workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It runs on every push to `main` and can also be started by hand from the **Actions** tab.

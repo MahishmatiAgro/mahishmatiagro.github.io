@@ -7,6 +7,7 @@
    source: optional references shown under "About this item" (links: [{topic: {en, hi}, url, cite}], en/hi text).
    en = English, hi = Hindi (same order and number of items in each list).
    keywords: comma-separated search words for this product (English and Hindi).
+   jar3d: optional path of a 3D jar viewer (view-product/jar/) shown under the photo.
    Image paths are from the site root. */
 window.PRODUCTS = {
     P0001: {
@@ -221,6 +222,7 @@ window.PRODUCTS = {
 
     P0003: {
         img: "/assets/img/products/oyster-mushroom-powder.jpg",
+        jar3d: "/view-product/jar/",
         wa: "powder",
         source: {
             links: [

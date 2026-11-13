@@ -14,3 +14,7 @@ _site/
 
 # Legal text: keep exactly as published
 LICENSE
+
+# 3D jar viewer: three.js library files and OBJ models are used as supplied
+view-product/jar/js/vendor/
+view-product/jar/models/

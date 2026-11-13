@@ -84,6 +84,22 @@
     }
     put($("vp-price-note"), "vp.pnote", en.priceNote, hi.priceNote);
 
+    // 3D jar with the current label (view-product/jar/) in place of the photo. If 3D
+    // cannot start (no WebGL), the viewer sends "jar3d-error" and the photo comes back.
+    if (p.jar3d) {
+        var frame = $("vp-3d-frame");
+        frame.title = en.name + " jar in 3D";
+        frame.src = p.jar3d;
+        frame.hidden = false;
+        $("vp-img").hidden = true;
+        window.addEventListener("message", function (e) {
+            if (e.origin === location.origin && e.data === "jar3d-error") {
+                frame.hidden = true;
+                $("vp-img").hidden = false;
+            }
+        });
+    }
+
     en.badges.forEach(function (b, i) {
         make("li", $("vp-badges"), "vp.b" + i, b, hi.badges[i]);
     });
