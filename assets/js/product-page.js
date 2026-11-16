@@ -84,20 +84,70 @@
     }
     put($("vp-price-note"), "vp.pnote", en.priceNote, hi.priceNote);
 
-    // 3D jar with the current label (view-product/jar/) in place of the photo. If 3D
-    // cannot start (no WebGL), the viewer sends "jar3d-error" and the photo comes back.
-    if (p.jar3d) {
-        var frame = $("vp-3d-frame");
-        frame.title = en.name + " jar in 3D";
-        frame.src = p.jar3d;
-        frame.hidden = false;
-        $("vp-img").hidden = true;
-        window.addEventListener("message", function (e) {
-            if (e.origin === location.origin && e.data === "jar3d-error") {
-                frame.hidden = true;
-                $("vp-img").hidden = false;
-            }
+    // Image-only gallery with keyboard navigation and accessible view names.
+    if (p.gallery && p.gallery.length > 1) {
+        var gallery = $("vp-gallery");
+        var thumbs = $("vp-thumbs");
+        var display = $("vp-display");
+        var photo = $("vp-img");
+        var views = p.gallery;
+        var buttons = [];
+        gallery.classList.add("has-gallery");
+        thumbs.hidden = false;
+        display.setAttribute("role", "tabpanel");
+        display.tabIndex = 0;
+        var mobileGallery = matchMedia("(max-width: 540px)");
+        function setGalleryOrientation() {
+            thumbs.setAttribute(
+                "aria-orientation",
+                mobileGallery.matches ? "horizontal" : "vertical"
+            );
+        }
+        mobileGallery.addEventListener("change", setGalleryOrientation);
+        setGalleryOrientation();
+        function selectView(index) {
+            var view = views[index];
+            buttons.forEach(function (button, i) {
+                button.setAttribute("aria-selected", String(i === index));
+                button.tabIndex = i === index ? 0 : -1;
+            });
+            display.setAttribute("aria-labelledby", buttons[index].id);
+            photo.src = view.img;
+            photo.alt = en.alt + " — " + view.en;
+        }
+        views.forEach(function (view, index) {
+            var button = document.createElement("button");
+            button.type = "button";
+            button.id = "vp-view-" + index;
+            button.className = "pd-thumb";
+            button.setAttribute("role", "tab");
+            button.setAttribute("aria-controls", "vp-display");
+            var thumb = document.createElement("img");
+            thumb.src = view.img;
+            thumb.alt = "";
+            thumb.width = thumb.height = 64;
+            button.appendChild(thumb);
+            make("span", button, "vp.view" + index, view.en, view.hi).className = "sr-only";
+            button.addEventListener("click", function () {
+                selectView(index);
+            });
+            button.addEventListener("keydown", function (event) {
+                var next = index;
+                if (["ArrowRight", "ArrowDown"].includes(event.key))
+                    next = (index + 1) % views.length;
+                else if (["ArrowLeft", "ArrowUp"].includes(event.key))
+                    next = (index + views.length - 1) % views.length;
+                else if (event.key === "Home") next = 0;
+                else if (event.key === "End") next = views.length - 1;
+                else return;
+                event.preventDefault();
+                buttons[next].focus();
+                selectView(next);
+            });
+            buttons.push(button);
+            thumbs.appendChild(button);
         });
+        selectView(0);
     }
 
     en.badges.forEach(function (b, i) {

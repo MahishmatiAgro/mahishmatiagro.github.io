@@ -42,7 +42,7 @@ assets/
   js/recipes.js            The 14 recipes (English + Hindi)
   js/main.js               Language toggle, menu, recipes, form, animations
   img/logo.png             Logo (logo-512.png, favicon.png, apple-touch-icon.png are resized copies)
-  img/products/            Product photos (*.jpg are the web-sized copies used on the site)
+  img/products/            Product photos, including three powder jar WebPs
   img/dishes/              Recipe and gallery photos
   pdf/                     Recipe pamphlet PDF
 ```
@@ -56,6 +56,18 @@ assets/
 ```bash
 sips -s format jpeg -s formatOptions 82 -Z 900 "original.png" --out assets/img/products/fresh-oyster-mushroom.jpg
 ```
+
+**Powder product gallery.** `view-product/products.js` lists exactly three photos: front, left and right, in that order. Thumbnails contain images with accessible view names and support keyboard navigation. They sit beside the main photo on desktop and below it on mobile.
+
+The images are AI-generated product photographs styled from the owner's reference, with a smooth golden lid and textured mushroom powder. Shared PNG masters live in `../media/product-photos/mushroom-powder/`; the home page and Reel use the same front WebP as the product page.
+
+After selecting or replacing a photo master, optimise the three website images:
+
+```bash
+python scripts/prepare_product_photos.py
+```
+
+This uses Playwright with installed Chrome, preserves transparency and exports square 1200 px WebP assets. A label artwork change requires reviewing the photographic masters too; their printing is part of the generated image. The label PNG in `view-product/jar/imgs/` is retained as the reference artwork recorded in the generation prompts.
 
 **Add gallery photos.** Put the image in `assets/img/gallery/`, then copy one `<figure class="g-item">` block in the Gallery section of `index.html`.
 

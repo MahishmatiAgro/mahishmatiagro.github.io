@@ -6,7 +6,7 @@
     <priority>1.0</priority>
     <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/fresh-oyster-mushroom.jpg</image:loc></image:image>
     <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/dried-oyster-mushroom.jpg</image:loc></image:image>
-    <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/oyster-mushroom-powder.jpg</image:loc></image:image>
+    <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/mushroom-powder-front.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://mahishmatiagro.github.io/view-product/?product=P0001</loc>
@@ -24,6 +24,6 @@
     <loc>https://mahishmatiagro.github.io/view-product/?product=P0003</loc>
     <lastmod>2026-11-10</lastmod>
     <priority>0.8</priority>
-    <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/oyster-mushroom-powder.jpg</image:loc></image:image>
+    <image:image><image:loc>https://mahishmatiagro.github.io/assets/img/products/mushroom-powder-front.webp</image:loc></image:image>
   </url>
 </urlset>

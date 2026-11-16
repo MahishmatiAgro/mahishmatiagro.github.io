@@ -3,8 +3,7 @@
 # Run on all:   pre-commit run --all-files
 # Update hooks: pre-commit autoupdate
 
-# Used as supplied: three.js library files and the 3D jar models
-exclude: "^(node_modules/|view-product/jar/js/vendor/|view-product/jar/models/)"
+exclude: "^node_modules/"
 
 repos:
   # ===========================================================================

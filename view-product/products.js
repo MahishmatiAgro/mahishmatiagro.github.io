@@ -7,7 +7,7 @@
    source: optional references shown under "About this item" (links: [{topic: {en, hi}, url, cite}], en/hi text).
    en = English, hi = Hindi (same order and number of items in each list).
    keywords: comma-separated search words for this product (English and Hindi).
-   jar3d: optional path of a 3D jar viewer (view-product/jar/) shown under the photo.
+   gallery: optional photo list [{img, en, hi}], displayed in order.
    Image paths are from the site root. */
 window.PRODUCTS = {
     P0001: {
@@ -221,8 +221,20 @@ window.PRODUCTS = {
     },
 
     P0003: {
-        img: "/assets/img/products/oyster-mushroom-powder.jpg",
-        jar3d: "/view-product/jar/",
+        img: "/assets/img/products/mushroom-powder-front.webp",
+        gallery: [
+            { img: "/assets/img/products/mushroom-powder-front.webp", en: "Front", hi: "सामने" },
+            {
+                img: "/assets/img/products/mushroom-powder-left.webp",
+                en: "Left side",
+                hi: "बायाँ भाग",
+            },
+            {
+                img: "/assets/img/products/mushroom-powder-right.webp",
+                en: "Right side",
+                hi: "दायाँ भाग",
+            },
+        ],
         wa: "powder",
         source: {
             links: [

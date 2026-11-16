@@ -1481,6 +1481,64 @@ html[lang="hi"] .product-hi {
     gap: 48px;
     align-items: center;
 }
+.pd-gallery {
+    min-width: 0;
+}
+.pd-gallery.has-gallery {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+}
+.pd-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.pd-thumb {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--muted);
+    font: 500 0.66rem/1.2 var(--font-body);
+    cursor: pointer;
+}
+.pd-thumb img {
+    display: block;
+    width: 100%;
+    height: 58px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.pd-thumb:hover,
+.pd-thumb[aria-selected="true"] {
+    border-color: var(--green);
+    box-shadow: 0 0 0 1px var(--green);
+    color: var(--green);
+}
+.pd-thumb:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+.pd-gallery [hidden] {
+    display: none;
+}
+.pd-gallery.has-gallery .pd-media {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: none;
+}
+.pd-media > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
 .pd-media {
     position: relative;
     border-radius: var(--radius);
@@ -1621,16 +1679,6 @@ html[lang="hi"] .product-hi {
 .pd-two.pd-one {
     grid-template-columns: 1fr;
 }
-.pd-media iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 0;
-}
-/* Photo or 3D jar: whichever is hidden must not show (img/iframe set display: block). */
-.pd-media > [hidden] {
-    display: none;
-}
 .pd-price-ask small {
     font-size: 1rem;
     color: var(--green);
@@ -1641,5 +1689,17 @@ html[lang="hi"] .product-hi {
     .pd-two {
         grid-template-columns: 1fr;
         gap: 28px;
+    }
+}
+
+@media (max-width: 540px) {
+    .pd-gallery.has-gallery {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+    .pd-thumbs {
+        grid-row: 2;
+        flex-direction: row;
+        justify-content: center;
     }
 }

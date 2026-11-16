@@ -141,11 +141,25 @@
                         <span id="vp-crumb"></span>
                     </nav>
                     <div class="pd-grid">
-                        <div class="pd-media">
-                            <img id="vp-img" src="" alt="" width="900" height="900" />
-                            <!-- 3D jar instead of the photo when the product has "jar3d" (product-page.js) -->
-                            <iframe id="vp-3d-frame" title="" hidden></iframe>
-                            <span class="product-tag" id="vp-tag"></span>
+                        <div class="pd-gallery" id="vp-gallery">
+                            <div
+                                class="pd-thumbs"
+                                id="vp-thumbs"
+                                role="tablist"
+                                aria-label="Product views"
+                                hidden
+                            ></div>
+                            <div class="pd-media" id="vp-display">
+                                <img
+                                    id="vp-img"
+                                    src=""
+                                    alt=""
+                                    width="1000"
+                                    height="1000"
+                                    fetchpriority="high"
+                                />
+                                <span class="product-tag" id="vp-tag"></span>
+                            </div>
                         </div>
                         <div class="pd-info">
                             <p class="eyebrow">
