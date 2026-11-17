@@ -1,6 +1,6 @@
-"""Optimise selected AI product photographs without replacing them with 3D renders.
+"""Optimise the three studio packshots based on the owner's actual jar photos.
 
-Masters: ../media/product-photos/mushroom-powder/{front,left,right}.png
+Masters: ../media/product-photos/mushroom-powder/ (see SOURCES below).
 Requires Playwright and installed Chrome. No running web server is needed.
 """
 import base64
@@ -10,15 +10,20 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 MASTERS = ROOT.parent / "media/product-photos/mushroom-powder"
+SOURCES = {
+    "front": MASTERS / "packshot-actual-jar-v1.png",
+    "left": MASTERS / "packshot-actual-jar-left-v1.png",
+    "right": MASTERS / "packshot-actual-jar-right-v1.png",
+}
 
 
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(channel="chrome", headless=True)
         page = browser.new_page()
-        for view in ("front", "left", "right"):
-            source = MASTERS / f"{view}.png"
-            data = "data:image/png;base64," + base64.b64encode(source.read_bytes()).decode()
+        for view, source in SOURCES.items():
+            mime = "image/png" if source.suffix == ".png" else "image/jpeg"
+            data = f"data:{mime};base64," + base64.b64encode(source.read_bytes()).decode()
             result = page.evaluate(
                 """async data => {
                     const image = new Image();
@@ -28,6 +33,8 @@ def main():
                     canvas.width = 1200;
                     canvas.height = 1200;
                     const context = canvas.getContext('2d');
+                    context.fillStyle = '#ffffff';
+                    context.fillRect(0, 0, 1200, 1200);
                     context.imageSmoothingQuality = 'high';
                     const scale = Math.min(1120 / image.width, 1120 / image.height);
                     const w = image.width * scale;

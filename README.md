@@ -44,7 +44,7 @@ assets/
   img/logo.png             Logo (logo-512.png, favicon.png, apple-touch-icon.png are resized copies)
   img/products/            Product photos, including three powder jar WebPs
   img/dishes/              Recipe and gallery photos
-  pdf/                     Recipe pamphlet PDF
+  pdf/                     Recipe pamphlet and bilingual product brochure
 ```
 
 ## Common edits
@@ -59,7 +59,7 @@ sips -s format jpeg -s formatOptions 82 -Z 900 "original.png" --out assets/img/p
 
 **Powder product gallery.** `view-product/products.js` lists exactly three photos: front, left and right, in that order. Thumbnails contain images with accessible view names and support keyboard navigation. They sit beside the main photo on desktop and below it on mobile.
 
-The images are AI-generated product photographs styled from the owner's reference, with a smooth golden lid and textured mushroom powder. Shared PNG masters live in `../media/product-photos/mushroom-powder/`; the home page and Reel use the same front WebP as the product page.
+All three images are AI-assisted studio packshots based on the owner's actual PET jar photographs and current label. The nutrition and pack-details views match the front image's white background, lighting and framing. Shared masters live in `../media/product-photos/mushroom-powder/`: `packshot-actual-jar-v1.png`, `packshot-actual-jar-left-v1.png` and `packshot-actual-jar-right-v1.png`. Unretouched side photographs are retained in `actual/` as source references; generation prompts and limitations are recorded alongside the masters. The home page and Reel source use the same front WebP as the product page.
 
 After selecting or replacing a photo master, optimise the three website images:
 
@@ -67,7 +67,17 @@ After selecting or replacing a photo master, optimise the three website images:
 python scripts/prepare_product_photos.py
 ```
 
-This uses Playwright with installed Chrome, preserves transparency and exports square 1200 px WebP assets. A label artwork change requires reviewing the photographic masters too; their printing is part of the generated image. The label PNG in `view-product/jar/imgs/` is retained as the reference artwork recorded in the generation prompts.
+This uses Playwright with installed Chrome, fits the complete image on a white square and exports 1200 px WebP assets. It does not crop or rewrite the photographed label. A label artwork change requires reviewing the photographic masters too; printing is part of each image. The label PNG in `view-product/jar/imgs/` is retained as the reference artwork recorded in the older generation prompts.
+
+**Powder content.** P0003 uses the `layout: "powder"` reading flow: a short introduction and ordering area, four benefit cards, cooking steps, current label nutrition, and expandable pack details. The English and Hindi values live together in `view-product/products.js`. Nutrition follows the current powder label (244 kcal, 19.0 g protein and 39.1 g fibre per 100 g); do not restore the older website figures.
+
+**Product brochure.** A four-page Hindi + English PDF is linked from the product collection and powder page. Its editable HTML/CSS and build instructions live in the sibling media repository at `../media/brochure/`. Rebuild the brochure and its website copy with:
+
+```bash
+python ../media/brochure/src/render_brochure.py
+```
+
+This requires Playwright, Google Chrome and ReportLab. The source uses shared product photos, logo and fonts. Preview the PDF after changing copy or prices.
 
 **Add gallery photos.** Put the image in `assets/img/gallery/`, then copy one `<figure class="g-item">` block in the Gallery section of `index.html`.
 

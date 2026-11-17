@@ -187,7 +187,7 @@
         rows.forEach(function (r, i) {
             var tr = document.createElement("tr");
             tbody.appendChild(tr);
-            make("th", tr, prefix + i, r[0], hiRows[i][0]);
+            make("th", tr, prefix + i, r[0], hiRows[i][0]).scope = "row";
             make("td", tr, prefix + i + "v", r[1], hiRows[i][1]);
         });
     }
@@ -203,6 +203,158 @@
     en.use.forEach(function (u, i) {
         make("li", $("vp-use"), "vp.u" + i, u, hi.use[i]);
     });
+
+    // The powder page has a short overview and a separate, clearly ordered reading flow.
+    if (p.layout === "powder") {
+        document.body.classList.add("pd-powder");
+        var hero = document.querySelector(".pd-hero");
+        var aboutSection = $("vp-about-box").closest("section");
+        var detailsSection = $("vp-details").closest("section");
+        var detailsBox = $("vp-details").closest(".pd-two").firstElementChild;
+        var useBox = $("vp-use").parentElement;
+        var nutritionBox = $("vp-nut-box");
+        var aboutBox = $("vp-about-box");
+
+        var jump = document.createElement("nav");
+        jump.className = "container pd-jump";
+        jump.setAttribute("aria-label", "Product information");
+        [
+            ["overview", "Why choose it", "क्यों चुनें"],
+            ["how-to-use", "How to use", "कैसे इस्तेमाल करें"],
+            ["nutrition", "Nutrition", "पोषण जानकारी"],
+            ["pack-details", "Pack details", "पैक विवरण"],
+        ].forEach(function (item, i) {
+            make("a", jump, "vp.jump" + i, item[1], item[2]).href = "#" + item[0];
+        });
+        hero.after(jump);
+        aboutSection.id = "overview";
+        aboutSection.className = "section pd-overview";
+        aboutBox.parentElement.classList.add("pd-one");
+        put(
+            aboutBox.querySelector("h2"),
+            "vp.overviewTitle",
+            "Simple ingredients. Everyday possibilities.",
+            "सरल सामग्री। रोज़ के खाने में नया स्वाद।"
+        );
+
+        var useSection = document.createElement("section");
+        useSection.id = "how-to-use";
+        useSection.className = "section section-tint pd-how";
+        var useContainer = document.createElement("div");
+        useContainer.className = "container";
+        useSection.appendChild(useContainer);
+        useContainer.appendChild(useBox);
+        aboutSection.after(useSection);
+        useBox.querySelector("a.btn-wa").remove();
+        useBox.querySelector(".pd-note").remove();
+        var storage = make(
+            "p",
+            useBox,
+            "vp.storage",
+            "Keep it fresh: store in a cool, dry place, away from moisture. Keep the jar airtight after opening.",
+            "ताज़गी बनाए रखें: ठंडी, सूखी जगह पर नमी से बचाकर रखें। खोलने के बाद जार अच्छी तरह बंद रखें।"
+        );
+        storage.className = "pd-storage";
+
+        var nutritionSection = document.createElement("section");
+        nutritionSection.id = "nutrition";
+        nutritionSection.className = "section pd-nutrition";
+        var nutritionContainer = document.createElement("div");
+        nutritionContainer.className = "container pd-two";
+        nutritionSection.appendChild(nutritionContainer);
+        var nutritionIntro = document.createElement("div");
+        nutritionIntro.className = "pd-nutrition-intro";
+        nutritionContainer.appendChild(nutritionIntro);
+        make(
+            "p",
+            nutritionIntro,
+            "vp.nutEyebrow",
+            "Know your food",
+            "अपने भोजन को जानें"
+        ).className = "eyebrow";
+        make("h2", nutritionIntro, "vp.nutTitle", "What is in the jar?", "जार में क्या है?");
+        make(
+            "p",
+            nutritionIntro,
+            "vp.nutCopy",
+            "A clear view of the nutrition declared on our current label. Compare quantities on the same 100 g basis; the amount in your meal depends on how much powder you use.",
+            "हमारे वर्तमान लेबल पर दी गई पोषण जानकारी। तुलना प्रति 100 ग्राम के आधार पर करें; आपके भोजन में मात्रा इस्तेमाल किए गए पाउडर पर निर्भर करेगी।"
+        );
+        var stats = document.createElement("div");
+        stats.className = "pd-nut-stats";
+        nutritionIntro.appendChild(stats);
+        [
+            ["19.0 g", "Protein", "प्रोटीन"],
+            ["39.1 g", "Dietary fibre", "डाइटरी फाइबर"],
+        ].forEach(function (item, i) {
+            var stat = document.createElement("div");
+            stats.appendChild(stat);
+            make("strong", stat, "vp.stat" + i, item[0]);
+            make("span", stat, "vp.statLabel" + i, item[1], item[2]);
+        });
+        make(
+            "p",
+            nutritionIntro,
+            "vp.statBasis",
+            "Approximate values per 100 g · not per serving",
+            "प्रति 100 ग्राम अनुमानित मात्रा · एक सर्विंग की मात्रा नहीं"
+        ).className = "pd-note";
+        nutritionContainer.appendChild(nutritionBox);
+        useSection.after(nutritionSection);
+
+        detailsSection.id = "pack-details";
+        detailsSection.className = "section section-tint pd-pack";
+        var detailsContainer = detailsBox.parentElement;
+        detailsContainer.classList.add("pd-one");
+        var disclosure = document.createElement("details");
+        disclosure.className = "pd-pack-disclosure";
+        make(
+            "summary",
+            disclosure,
+            "vp.packSummary",
+            "Ingredients, batch & pack details",
+            "सामग्री, बैच और पैक विवरण"
+        );
+        detailsBox.querySelector("h2").remove();
+        detailsBox.before(disclosure);
+        disclosure.appendChild(detailsBox);
+
+        var contact = document.createElement("div");
+        contact.className = "pd-bottom-cta";
+        detailsContainer.appendChild(contact);
+        make(
+            "h2",
+            contact,
+            "vp.contactTitle",
+            "Bring it to your kitchen.",
+            "अपनी रसोई में शामिल करें।"
+        );
+        make(
+            "p",
+            contact,
+            "vp.contactCopy",
+            "Tell us how many jars you need and your location. We will confirm availability, price and delivery or pickup. Bulk enquiries welcome.",
+            "जार की संख्या और अपना पता बताएं। हम उपलब्धता, दाम और डिलीवरी या पिकअप की जानकारी देंगे। थोक ऑर्डर के लिए भी संपर्क करें।"
+        );
+        var order = make("a", contact, "vp.order", "Order on WhatsApp", "WhatsApp पर ऑर्डर करें");
+        order.className = "btn btn-wa";
+        order.href = "https://wa.me/917223047175";
+        order.dataset.waKind = "order";
+        order.dataset.wa = "powderOrder";
+        order.target = "_blank";
+        order.rel = "noopener";
+        var brochure = make(
+            "a",
+            contact,
+            "brochure.download",
+            "Download product brochure (PDF)",
+            "उत्पाद ब्रोशर डाउनलोड करें (PDF)"
+        );
+        brochure.className = "pd-brochure-link";
+        brochure.href = "/assets/pdf/mahishmati-agro-product-brochure.pdf";
+        brochure.download = "mahishmati-agro-product-brochure.pdf";
+        document.querySelector('.pd-actions [data-wa]:not([data-wa-kind="order"])').remove();
+    }
 
     // Order buttons send an order message; the rest send an enquiry about this product.
     document.querySelectorAll("[data-wa]").forEach(function (a) {
