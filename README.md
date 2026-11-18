@@ -8,7 +8,7 @@ We sell:
 
 - Organic fresh oyster mushroom
 - Dried oyster mushroom
-- Oyster mushroom powder
+- Mushroom powder
 
 ## Contact
 

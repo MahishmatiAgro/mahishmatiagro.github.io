@@ -307,7 +307,7 @@ window.PRODUCTS = {
                 "Taste, adjust and enjoy. Keep the jar closed after use and always use a clean, dry spoon.",
             ],
             keywords:
-                "mushroom powder, oyster mushroom powder, mushroom powder 100 g, Mandla, Maharajpur, मशरूम पाउडर, Mahishmati Agro",
+                "mushroom powder, mushroom powder 100 g, Mandla, Maharajpur, मशरूम पाउडर, Mahishmati Agro",
             meta: "Mahishmati Agro mushroom powder, 100 g jar, MRP ₹376. Sun-dried mushrooms for dal, soups, curries and gravies. View ingredients, current pack nutrition and order directly.",
         },
         hi: {
